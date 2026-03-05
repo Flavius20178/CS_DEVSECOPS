@@ -18,10 +18,18 @@ jobs:
         run: |
           height=$((RANDOM % 8 + 3))
 
-          echo "Pyramid height: $height"
+          echo "Pyramid height: $height" >> test
           for ((i=1;i<=height;i++))
           do
             for ((j=i;j<height;j++)); do printf " "; done
             for ((j=1;j<=2*i-1;j++)); do printf "*"; done
             printf "\n"
-          done
+          done >> test
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add test
+          git commit -m "Update test file with pyramid"
+          git push
