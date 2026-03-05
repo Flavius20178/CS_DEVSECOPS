@@ -2,6 +2,8 @@ name: Star Pyramid
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -9,6 +11,7 @@ jobs:
 
     steps:
       - name: Print pyramid
+        shell: bash
         run: |
           height=$((RANDOM % 8 + 3))
 
