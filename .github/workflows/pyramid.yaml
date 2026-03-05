@@ -1,38 +1,15 @@
-name: Star Pyramid
+name: Pyramid
 
-permissions:
-  contents: write
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: push
 
 jobs:
-  build:
+  pyramid:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Print pyramid
-        shell: bash
-        run: |
-          height=$((RANDOM % 8 + 3))
-
-          echo "Pyramid height: $height" >> test
-          for ((i=1;i<=height;i++))
+       - name: Print pyramid
+         run: |
+          for i in {1..10}
           do
-            for ((j=i;j<height;j++)); do printf " "; done
-            for ((j=1;j<=2*i-1;j++)); do printf "*"; done
-            printf "\n"
-          done >> test
-
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add test
-          git commit -m "Update test file with pyramid"
-          git push
+            printf "%*s\n" $i | tr " " "*"
+          done
