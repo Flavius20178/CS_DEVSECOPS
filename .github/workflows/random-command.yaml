@@ -1,0 +1,27 @@
+name: Random Command Runner
+
+on:
+push:
+
+jobs:
+run-random-command:
+runs-on: ubuntu-latest
+
+```
+steps:
+  - name: Run random command
+    run: |
+      commands=(
+        "echo Hello from GitHub Actions"
+        "date"
+        "whoami"
+        "uname -a"
+        "uptime"
+        "ls -la"
+        "pwd"
+      )
+
+      rand=$((RANDOM % ${#commands[@]}))
+      echo "Running: ${commands[$rand]}"
+      eval "${commands[$rand]}"
+```
