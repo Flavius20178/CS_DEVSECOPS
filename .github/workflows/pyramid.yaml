@@ -1,23 +1,21 @@
 name: Star Pyramid
 
 on:
-push:
+  push:
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-```
-steps:
-  - name: Print pyramid
-    run: |
-      height=$((RANDOM % 8 + 3))
+    steps:
+      - name: Print pyramid
+        run: |
+          height=$((RANDOM % 8 + 3))
 
-      echo "Pyramid height: $height"
-      for ((i=1;i<=height;i++))
-      do
-        for ((j=i;j<height;j++)); do printf " "; done
-        for ((j=1;j<=2*i-1;j++)); do printf "*"; done
-        printf "\n"
-      done
-```
+          echo "Pyramid height: $height"
+          for ((i=1;i<=height;i++))
+          do
+            for ((j=i;j<height;j++)); do printf " "; done
+            for ((j=1;j<=2*i-1;j++)); do printf "*"; done
+            printf "\n"
+          done
